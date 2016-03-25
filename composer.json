@@ -1,0 +1,18 @@
+{
+    "require": {
+        "guzzlehttp/guzzle": "^6.1"
+    },
+
+    "autoload": {
+		"classmap": [
+			"app/controllers",
+			"app/core",
+			"app/libs",
+			"app/models"
+		],
+	    "files": [
+			"app/helpers.php"
+	    ]
+
+	}
+}
