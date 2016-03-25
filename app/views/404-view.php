@@ -20,7 +20,7 @@ body {
 
 <h2>Error 404</h2>
 
-<p>The page does not exist. <a href="<?php getenv('ENVIRONMENT_DOMAIN'); ?>">Return to home.</a></p>
+<p>The page does not exist. <a href="<?php echo getenv('ENVIRONMENT_DOMAIN'); ?>">Return to home.</a></p>
 
 </body>
 </html>

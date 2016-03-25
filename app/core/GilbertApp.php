@@ -47,7 +47,7 @@ class GilbertApp {
 
 	protected function handleRequest($uri, $method){
 		$path = explode('/', trim(parse_url($uri, PHP_URL_PATH), '/'));
-		if (strlen($path[0]) === 0) return $this->missing();
+		if (strlen($path[0]) === 0) return APP_PATH.'/views/home.php';
 		$method = strtolower($method);
 		$action = false;
 		foreach ($this->routes as $r) {
