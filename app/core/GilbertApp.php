@@ -4,6 +4,7 @@ class GilbertApp {
 	protected $instance;
 	protected $routes;
 	protected $control;
+	protected $filters;
 	private $api;
 	public $core;
 
@@ -29,6 +30,7 @@ class GilbertApp {
 	public function controller($ctrl) {
 		$cl = $ctrl.'Controller';
 		$this->control[$ctrl] = new $cl();
+		$this->filters[$ctrl] = $filter;
 	}
 
 	public function route($method, $uri, $ctrl, $action) {
@@ -75,7 +77,7 @@ class GilbertApp {
 				break;
 			}
 		}
-		if (!$action) {
+		if (!$action || !$this->filter($this->filters[$ctrl])) {
 			return $this->missing();
 		}
 		return $this->control[$ctrl]->callController($method, $action, $params);
@@ -87,6 +89,11 @@ class GilbertApp {
 		} else {
 			require APP_PATH.'/views/404-view.php';
 		}
+	}
+
+	private function filter($type = true) {
+		if ($type === 'token') return (isset($_GET['token']) && $_GET['token']==getenv('ADMIN_TOKEN'));
+		return $type;
 	}
 }
 
