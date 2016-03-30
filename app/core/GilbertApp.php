@@ -27,7 +27,7 @@ class GilbertApp {
 		return $response;
 	}
 
-	public function controller($ctrl) {
+	public function controller($ctrl, $filter=true) {
 		$cl = $ctrl.'Controller';
 		$this->control[$ctrl] = new $cl();
 		$this->filters[$ctrl] = $filter;
