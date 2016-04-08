@@ -7,11 +7,10 @@ class UserController extends Controller {
 		$this->view = new View();
 	}
 
-	/*
-	public function get_other() {
-		testOut(apcu_cache_info());
+	public function get_test() {
+		//TODO
+		$this->view->make('test_user.php');
 	}
-	*/
 }
 
 ?>
