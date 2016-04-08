@@ -68,6 +68,7 @@ abstract class Base_Services_Twilio extends Services_Twilio_Resource
                                 "header" => "Accept-Charset: utf-8\r\n",
                             ),
                             "ssl" => array(
+                                'cafile' => '/etc/ssl/certs/ca-certificates.crt',
                                 'verify_peer' => true,
                                 'verify_depth' => 5,
                             ),
