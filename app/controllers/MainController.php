@@ -12,6 +12,10 @@ class MainController extends Controller {
 	public function get_test($param) {
 		$this->view->make('test.php', ['param' => $param]);
 	}
+
+	public function post_login() {
+		//TODO
+	}
 }
 
 ?>
