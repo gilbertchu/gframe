@@ -1,0 +1,9 @@
+# live
+
+composer.phar
+fabfile.*
+.*
+/nginx
+/node_modules
+_*
+!.gitignore
