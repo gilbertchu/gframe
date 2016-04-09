@@ -93,6 +93,9 @@ class GilbertApp {
 
 	private function filter($type = true) {
 		if ($type === 'token') return (isset($_GET['token']) && $_GET['token']==getenv('ADMIN_TOKEN'));
+		if ($type === 'jwt') {
+			//TODO
+		}
 		return $type;
 	}
 }
