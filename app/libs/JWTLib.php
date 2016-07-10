@@ -1,5 +1,6 @@
 <?php
 
+//TODO
 class JWTLib {
 	public $jwt;
 
