@@ -20,4 +20,10 @@ function lputenv($key, $value) {
 	putenv("{$key}={$value}");
 }
 
+/*
+function env($check = false) {
+	return ($check) ? ($check === getenv('ENVIRONMENT_NAME')) : getenv('ENVIRONMENT_NAME');
+}
+*/
+
 ?>

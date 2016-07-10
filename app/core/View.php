@@ -1,7 +1,8 @@
 <?php
 
 class View {
-	public function make($view, $params = false, $cache = false) {
+	//Generate a view (optional params)
+	public function make($view, $params = false) {
 		if ($params) {
 			foreach ($params as $k => $v) {
 				$$k = $v;
@@ -12,8 +13,10 @@ class View {
 		return ob_get_flush();
 	}
 
-	public function redirect($path) {
-		header('Location: '.getenv('ENVIRONMENT_DOMAIN').$path);
+	//Redirect to an internal path (default status 307)
+	public function redirect($path, $code=307) {
+		header('Location: '.getenv('ENVIRONMENT_DOMAIN').$path, true, $code);
+		return true;
 	}
 
 	/*

@@ -1,12 +1,12 @@
 <?php
 
 class GilbertApp {
-	protected $instance;
-	protected $routes;
-	protected $control;
-	protected $filters;
+	//protected $instance;
+	private $routes;
+	private $control;
+	private $filters;
 	private $api;
-	public $core;
+	//public $core;
 
 	function __construct($api = false) {
 		//check for api call first?
@@ -14,10 +14,7 @@ class GilbertApp {
 		$this->routes = array();
 	}
 
-	public function env($check = false) {
-		return ($check) ? ($check === getenv('ENVIRONMENT_NAME')) : getenv('ENVIRONMENT_NAME');
-	}
-
+	//The request entry point
 	public function run() {
 		//removing /app prefix
 		//$uri = substr($_SERVER['REQUEST_URI'],4);
@@ -27,12 +24,14 @@ class GilbertApp {
 		return $response;
 	}
 
+	//Register controller (optional filter middleware) 
 	public function controller($ctrl, $filter=true) {
 		$cl = $ctrl.'Controller';
 		$this->control[$ctrl] = new $cl();
 		$this->filters[$ctrl] = $filter;
 	}
 
+	//Register a route
 	public function route($method, $uri, $ctrl, $action) {
 		$path = explode('/', trim($uri, '/'));
 		$r = array();
@@ -43,11 +42,19 @@ class GilbertApp {
 		$r[$method] = array($ctrl, $action);
 		$this->routes[] = $r;
 	}
+
+	//Quick setter for get route
 	public function get($uri, $ctrl, $action) {
 		$this->route('get', $uri, $ctrl, $action);
 	}
 
-	protected function handleRequest($uri, $method){
+	//Quick setter for post route
+	public function post($uri, $ctrl, $action) {
+		$this->route('post', $uri, $ctrl, $action);
+	}
+
+	//Handle the request and generate a response
+	private function handleRequest($uri, $method){
 		$path = explode('/', trim(parse_url($uri, PHP_URL_PATH), '/'));
 		if (strlen($path[0]) === 0) {
 			if ($this->api) {
@@ -80,22 +87,37 @@ class GilbertApp {
 		if (!$action || !$this->filter($this->filters[$ctrl])) {
 			return $this->missing();
 		}
+		if (!$this->api) {
+			Session::init();
+		}
 		return $this->control[$ctrl]->callController($method, $action, $params);
 	}
 
+	//Return 404 when path not found
 	private function missing() {
 		if ($this->api) {
 			require APP_PATH.'/views/404-api.php';
 		} else {
 			require APP_PATH.'/views/404-view.php';
 		}
+		return true;
 	}
 
-	private function filter($type = true) {
+	//Filter middleware
+	private function filter($type) {
+		//Token in query string
 		if ($type === 'token') return (isset($_GET['token']) && $_GET['token']==getenv('ADMIN_TOKEN'));
+
+		//Basic auth
+		if ($type === 'auth') {
+			//TODO
+		}
+
+		//JWT
 		if ($type === 'jwt') {
 			//TODO
 		}
+
 		return $type;
 	}
 }

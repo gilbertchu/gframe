@@ -10,6 +10,6 @@ $app = new GilbertApp(true);
 
 require_once APP_PATH.'/config/api_routes.php';
 
-$app->run();
+$res = $app->run(); //TODO add handling for failures
 
 ?>
