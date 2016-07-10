@@ -12,6 +12,10 @@ class View {
 		return ob_get_flush();
 	}
 
+	public function redirect($path) {
+		header('Location: '.getenv('ENVIRONMENT_DOMAIN').$path);
+	}
+
 	/*
 	public function ijson() {
 		//TODO need 404 view
