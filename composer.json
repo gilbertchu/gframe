@@ -1,8 +1,10 @@
 {
     "require": {
-        "guzzlehttp/guzzle": "^6.1",
+        "guzzlehttp/guzzle": "5.*",
         "twilio/sdk": "^4.10",
-        "firebase/php-jwt": "^3.0"
+        "firebase/php-jwt": "^3.0",
+        "authy/php": "^2.4",
+        "predis/predis": "^1.1"
     },
 
     "autoload": {

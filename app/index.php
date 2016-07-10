@@ -10,6 +10,15 @@ $app = new GilbertApp(false);
 
 require_once APP_PATH.'/config/routes.php';
 
-$app->run();
+if (!$app->run()) {
+	switch (getenv('ENVIRONMENT_SETTING')) {
+		case 'production':
+			break;
+		case 'dev':
+			//Show a stack trace?
+			debug_print_backtrace();
+			break;
+	}
+}
 
 ?>
