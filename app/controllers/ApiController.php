@@ -10,7 +10,7 @@ class ApiController extends Controller{
 	}
 
 	public function get_test() {
-		$this->response->rjson(['result'=>"Test successful"]);
+		return $this->response->rjson(['result'=>"Test successful"]);
 	}
 
 	public function post_twilio() {
@@ -27,6 +27,7 @@ class ApiController extends Controller{
 
 		header("content-type: text/xml");
 		echo '<?xml version="1.0" encoding="UTF-8"?><Response></Response>';
+		return true;
 	}
 }
 

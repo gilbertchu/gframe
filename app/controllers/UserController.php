@@ -9,7 +9,7 @@ class UserController extends Controller {
 
 	public function get_test() {
 		//TODO
-		$this->view->make('test_user.php');
+		return $this->view->make('test_user.php');
 	}
 }
 

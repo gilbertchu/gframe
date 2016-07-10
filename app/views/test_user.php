@@ -6,6 +6,23 @@
 
 ?>
 
+<!DOCTYPE html>
+<html>
+<head>
+<title>Home</title>
+<style>
+body {
+	background: #000;
+	color: #ddd;
+	font-family: "Open Sans", Helvetica, Arial, sans-serif;
+}
+</style>
+</head>
+<body>
+
+<h2>Testing Auth</h2>
+<p>Not yet finished!</p>
+
 <script>
 //TODO
 $(function(){
@@ -31,3 +48,5 @@ $(function(){
 	});
 });
 </script>
+</body>
+</html>
